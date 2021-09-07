@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+import { ContainerConteudo } from "./conteudo.styled";
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="site.css" />
-    <title>DevSchool</title>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-    </style>
 
-</head>
+export default function Conteudo() {
 
-<body>
 
-    <div class="containerDev">
+    return(
+        <ContainerConteudo>
+        <div class="containerDev">
         <div class="lateralEsquerda">
             <header class="header-lateralEsquerda">
                 <div class="img-livro"> <img src="/DevSchool/html/src/assets/imagens/book.svg" /></div>
@@ -67,10 +58,10 @@
                         </div>
 
                         <div class="sub-box-inputs">
-                            <div class="input-item" , class="input-2">
+                            <div class="input-item" class="input-2"/>
                                 Curso: <input type="text"> </input>
                             </div>
-                            <div class="input-item" , class="input-2">
+                            <div class="input-item" class="input-2"/>
                                 Turma: <input type="text"> </input>
                             </div>
                         </div>
@@ -188,8 +179,8 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-</body>
+        </ContainerConteudo>
+    )
 
-</html>
+}
+

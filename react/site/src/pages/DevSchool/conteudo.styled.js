@@ -1,4 +1,8 @@
-* {
+import styled from 'styled-components'
+
+
+const ContainerConteudo = styled.div`
+  * {
   box-sizing: border-box;
 }
 
@@ -421,3 +425,6 @@ th {
   width: 0.1em;
 }
 
+`
+
+export { ContainerConteudo }
