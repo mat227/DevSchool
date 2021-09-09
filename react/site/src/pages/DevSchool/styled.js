@@ -118,6 +118,7 @@ body {
   padding: 1em 2.8em;
 
   justify-content: space-between;
+  
 }
 
 .divDentroIMG {
@@ -356,36 +357,11 @@ table {
 }
 
 tbody {
-    overflow-y: scroll;
-    height: 300px;
   background-color: #f5f5f5;
 }
-
-tbody::-webkit-scrollbar-track
-    {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        border-radius: 10px;
-        background-color: #CBCBCB;
-    }
-
-    tbody::-webkit-scrollbar
-    {
-        width: 7px;
-        background-color: #CBCBCB;
-        border-radius: 10px;
-    }
-
-    tbody::-webkit-scrollbar-thumb
-    {
-        border-radius: 10px;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-        background-color: #986cdf;
-    }
-
-
-thead, tbody{
-    display: block;  
-  }
+.linha-alterada{
+  background-color: #fff;
+}
 
 td {
   text-align: left;
@@ -418,7 +394,17 @@ th {
 .espaco {
   width: 0.1em;
 }
+.espaco > button{
+  visibility: hidden;
+}
 
+tr:hover{
+
+  .espaco > button{
+  visibility: visible;
+}
+
+}
 
 
 `
