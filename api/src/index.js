@@ -20,7 +20,7 @@ app.post('/matricula', async (req, resp) => {
 
         let r = await db.tb_matricula.create({
             nm_aluno: matri.nome,
-            nr_chamada: matri.numero,
+            nr_chamada: matri.chamada,
             nm_curso: matri.curso,
             nm_turma: matri.turma
         })
@@ -40,7 +40,7 @@ app.put('/matricula/:id', async (req, resp) => {
         let r = await db.tb_matricula.update(
             
             { nm_aluno : matricula.nome, 
-              nr_chamada: matricula.numero,
+              nr_chamada: matricula.chamada,
               nm_curso: matricula.curso,
               nm_turma: matricula.turma
             },

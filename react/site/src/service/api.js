@@ -13,7 +13,7 @@ export default class Api {
     async inserirAluno(nomeAluno, chamada, curso,turma) {
        let inserir={
            nome: nomeAluno,
-           numero: chamada,
+           chamada: chamada,
            curso: curso,
            turma: turma
 
