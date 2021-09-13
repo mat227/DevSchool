@@ -23,6 +23,7 @@ export default function Conteudo() {
 
   const cadastrarAluno = async () => {
     loading.current.complete();
+    
     if (nomeAluno == "") toast.error("O campo nome é obrigatório");
     else {
       if (nomeAluno.length < 4)

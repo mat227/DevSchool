@@ -17,14 +17,20 @@ app.get('/matricula', async (req, resp) => {
 app.post('/matricula', async (req, resp) => {
     try {
         let matri = req.body;
+        let r =await db.tb_matricula.findOne({where:{nr_chamada:matri.chamada,nm_turma:matri.turma}});
+        if(r!= null)
+        return resp.send({erro:'Número de chamada ja está sendo utilizado nessa turma'})
+        else{
 
         let r = await db.tb_matricula.create({
             nm_aluno: matri.nome,
             nr_chamada: matri.chamada,
             nm_curso: matri.curso,
             nm_turma: matri.turma
+        
         })
         resp.send(r);
+    }
     } catch (e) {
         resp.send({ erro: 'Ocorreu um erro!' })
     }
