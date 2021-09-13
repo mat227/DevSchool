@@ -26,8 +26,8 @@ export default function Conteudo() {
     
     if (nomeAluno == "") toast.error("O campo nome é obrigatório");
     else {
-      if (nomeAluno.length < 4)
-        toast.error("O campo nome precisa ter no mínimo 4 caracteres");
+      if (nomeAluno.length < 3)
+        toast.error("O campo nome precisa ter no mínimo 3 caracteres");
       else {
         if (chamada == "") toast.error("O campo chamada é obrigatório");
         else {
@@ -36,13 +36,13 @@ export default function Conteudo() {
           else {
             if (curso == "") toast.error("O campo curso é obrigatório");
             else {
-                if (curso.length < 4)
-                toast.error("O campo curso precisa ter no mínimo 4 caracteres");
+                if (curso.length < 3)
+                toast.error("O campo curso precisa ter no mínimo 3 caracteres");
               else {
               if (turma == "") toast.error("O campo turma é obrigatório");
               else {
-                if (turma.length < 4)
-                toast.error("O campo turma precisa ter no mínimo 4 caracteres");
+                if (turma.length < 3)
+                toast.error("O campo turma precisa ter no mínimo 3 caracteres");
               else {
                 if (idAlterando == 0) {
                   let r = await api.inserirAluno(
@@ -61,7 +61,6 @@ export default function Conteudo() {
                     curso,
                     turma
                   );
-
                   if (r.erro) toast.error(`${r.erro}`);
                   else toast.dark("Aluno alterado com sucesso");
                 }

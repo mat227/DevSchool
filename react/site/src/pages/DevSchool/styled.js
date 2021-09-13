@@ -116,7 +116,6 @@ body {
   flex-direction: row;
 
   padding: 1em 2.8em;
-
   justify-content: space-between;
   
 }

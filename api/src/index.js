@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.get('/matricula', async (req, resp) => {
     try {
-        let matricula = await db.tb_matricula.findAll();
+        let matricula = await db.tb_matricula.findAll({order: [["id_matricula","desc"]]});
         resp.send(matricula);
     } catch (e) {
         resp.send({ erro: 'Ocorreu um erro!' })
@@ -42,7 +42,9 @@ app.put('/matricula/:id', async (req, resp) => {
     try {
         let id = req.params.id;
         let matricula = req.body;
-
+        let a =await db.tb_matricula.findOne({where:{nr_chamada:matricula.chamada,nm_turma:matricula.turma}});
+        if(a!= null)
+        return resp.send({erro:'Número de chamada ja está sendo utilizado nessa turma'})
         let r = await db.tb_matricula.update(
             
             { nm_aluno : matricula.nome, 
