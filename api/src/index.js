@@ -18,19 +18,43 @@ app.post('/matricula', async (req, resp) => {
     try {
         let matri = req.body;
         let r =await db.tb_matricula.findOne({where:{nr_chamada:matri.chamada,nm_turma:matri.turma}});
-        if(r!= null)
-        return resp.send({erro:'Número de chamada ja está sendo utilizado nessa turma'})
-        else{
+        if(r!= null){
+        return resp.send({erro:'O número de chamada ja está sendo utilizado nessa turma'})
+        }
+        if(!matri.nome || matri.nome == "") {
+            return resp.send({erro: 'O campo nome é obrigatório'})
+        }
+        if(matri.nome.length<3) {
+            return resp.send({erro: 'O campo nome precisa de no minímo 3 caracteres'})
+        }
+        if(!matri.chamada || matri.chamada == "") {
+            return resp.send({erro: 'O campo chamada é obrigatório'})
+        }
+        if(!matri.chamada <=0 && (isNaN(matri.chamada))) {
+            return resp.send({erro: 'O campo chamada não pode ter números negativos ou letras como valor'})
+        }
+        if(!matri.curso || matri.curso == "") {
+            return resp.send({erro: 'O campo curso é obrigatório'})
+        }
+        if(matri.curso.length<3) {
+            return resp.send({erro: 'O campo curso precisa de no minímo 3 caracteres'})
+        }
+        if(!matri.turma || matri.turma == "") {
+            return resp.send({erro: 'O campo turma é obrigatório'})
+        }
+        if(matri.turma.length<3) {
+            return resp.send({erro: 'O campo turma precisa de no minímo 3 caracteres'})
+        }
 
-        let r = await db.tb_matricula.create({
+        let a = await db.tb_matricula.create({
             nm_aluno: matri.nome,
             nr_chamada: matri.chamada,
             nm_curso: matri.curso,
             nm_turma: matri.turma
         
         })
-        resp.send(r);
-    }
+        resp.send(a);
+    
     } catch (e) {
         resp.send({ erro: 'Ocorreu um erro!' })
     }

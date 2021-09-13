@@ -23,27 +23,11 @@ export default function Conteudo() {
 
   const cadastrarAluno = async () => {
     loading.current.complete();
+
+
     
-    if (nomeAluno == "") toast.error("O campo nome é obrigatório");
-    else {
-      if (nomeAluno.length < 3)
-        toast.error("O campo nome precisa ter no mínimo 3 caracteres");
-      else {
-        if (chamada == "") toast.error("O campo chamada é obrigatório");
-        else {
-          if (chamada < 0)
-            toast.error("O campo chamada não pode ser menor que 0");
-          else {
-            if (curso == "") toast.error("O campo curso é obrigatório");
-            else {
-                if (curso.length < 3)
-                toast.error("O campo curso precisa ter no mínimo 3 caracteres");
-              else {
-              if (turma == "") toast.error("O campo turma é obrigatório");
-              else {
-                if (turma.length < 3)
-                toast.error("O campo turma precisa ter no mínimo 3 caracteres");
-              else {
+    
+
                 if (idAlterando == 0) {
                   let r = await api.inserirAluno(
                     nomeAluno,
@@ -64,14 +48,14 @@ export default function Conteudo() {
                   if (r.erro) toast.error(`${r.erro}`);
                   else toast.dark("Aluno alterado com sucesso");
                 }
-              }
-            }
-          }
-        }
-        }
-        }
-      }
-    }
+              
+            
+        
+        
+        
+        
+    
+    
     listar();
     limparCampos();
   };
