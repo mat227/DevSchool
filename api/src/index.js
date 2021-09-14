@@ -66,9 +66,7 @@ app.put('/matricula/:id', async (req, resp) => {
     try {
         let id = req.params.id;
         let matricula = req.body;
-        let a =await db.tb_matricula.findOne({where:{nr_chamada:matricula.chamada,nm_turma:matricula.turma}});
-        if(a!= null)
-        return resp.send({erro:'Número de chamada ja está sendo utilizado nessa turma'})
+    
         let r = await db.tb_matricula.update(
             
             { nm_aluno : matricula.nome, 

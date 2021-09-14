@@ -226,7 +226,8 @@ export default function Conteudo() {
                     <td> {item.nr_chamada} </td>
                     <td> {item.nm_curso} </td>
                     <td> {item.nm_turma} </td>
-                    <td classNameName="espaco">
+                    
+                    <td className="espaco">
                       <button onClick={() => editar(item)}>
                         <img src="/assets/imagens/edit.svg" alt="" />
                       </button>

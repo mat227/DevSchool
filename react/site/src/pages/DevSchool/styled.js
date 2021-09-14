@@ -23,8 +23,9 @@ body {
   flex-direction: column;
 
   background-color: #2b3031;
-
-  min-height: 100vh;
+position: sticky;
+top: 0px;
+  height: 100vh;
 }
 
 .header-lateralEsquerda {
@@ -404,6 +405,8 @@ tr:hover{
 }
 
 }
+
+
 
 
 `
