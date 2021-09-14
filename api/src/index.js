@@ -21,25 +21,25 @@ app.post('/matricula', async (req, resp) => {
         if(r!= null){
         return resp.send({erro:'O número de chamada ja está sendo utilizado nessa turma'})
         }
-        if(!matri.nome || matri.nome == "") {
+        if( matri.nome == "") {
             return resp.send({erro: 'O campo nome é obrigatório'})
         }
         if(matri.nome.length<3) {
             return resp.send({erro: 'O campo nome precisa de no minímo 3 caracteres'})
         }
-        if(!matri.chamada || matri.chamada == "") {
+        if(matri.chamada == "") {
             return resp.send({erro: 'O campo chamada é obrigatório'})
         }
         if(!matri.chamada <=0 && (isNaN(matri.chamada))) {
             return resp.send({erro: 'O campo chamada não pode ter números negativos ou letras como valor'})
         }
-        if(!matri.curso || matri.curso == "") {
+        if( matri.curso == "") {
             return resp.send({erro: 'O campo curso é obrigatório'})
         }
         if(matri.curso.length<3) {
             return resp.send({erro: 'O campo curso precisa de no minímo 3 caracteres'})
         }
-        if(!matri.turma || matri.turma == "") {
+        if(matri.turma == "") {
             return resp.send({erro: 'O campo turma é obrigatório'})
         }
         if(matri.turma.length<3) {
