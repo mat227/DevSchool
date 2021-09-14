@@ -24,38 +24,22 @@ export default function Conteudo() {
   const cadastrarAluno = async () => {
     loading.current.complete();
 
+    if (idAlterando == 0) {
+      let r = await api.inserirAluno(nomeAluno, chamada, curso, turma);
+      if (r.erro) toast.error(`${r.erro}`);
+      else toast.dark("Aluno cadastrado com sucesso");
+    } else {
+      let r = await api.alteraraluno(
+        idAlterando,
+        nomeAluno,
+        chamada,
+        curso,
+        turma
+      );
+      if (r.erro) toast.error(`${r.erro}`);
+      else toast.dark("Aluno alterado com sucesso");
+    }
 
-    
-    
-
-                if (idAlterando == 0) {
-                  let r = await api.inserirAluno(
-                    nomeAluno,
-                    chamada,
-                    curso,
-                    turma
-                  );
-                  if (r.erro) toast.error(`${r.erro}`);
-                  else toast.dark("Aluno cadastrado com sucesso");
-                } else {
-                  let r = await api.alteraraluno(
-                    idAlterando,
-                    nomeAluno,
-                    chamada,
-                    curso,
-                    turma
-                  );
-                  if (r.erro) toast.error(`${r.erro}`);
-                  else toast.dark("Aluno alterado com sucesso");
-                }
-              
-            
-        
-        
-        
-        
-    
-    
     listar();
     limparCampos();
   };
@@ -115,66 +99,61 @@ export default function Conteudo() {
   return (
     <ContainerConteudo>
       <ToastContainer />
-      <LoadingBar color='red' ref={loading}/>
-      <div class="lateralEsquerda">
-        <header class="header-lateralEsquerda">
-          <div class="img-livro">
-            
+      <LoadingBar color="red" ref={loading} />
+      <div className="lateralEsquerda">
+        <header className="header-lateralEsquerda">
+          <div className="img-livro">
             <img src="/assets/imagens/book.svg" alt="" />
           </div>
-          <div class="devSchool">
-            
+          <div className="devSchool">
             <span>Dev</span> School
           </div>
         </header>
-        <div class="blocoPreto"></div>
-        <div class="lateralEsquerda-gerente">
+        <div className="blocoPreto"></div>
+        <div className="lateralEsquerda-gerente">
           <div> Gerenciamento </div>
           <img src="/assets/imagens/setaparabaixo.svg" alt="" />
         </div>
-        <div class="lateralEsquerda-aluno">
+        <div className="lateralEsquerda-aluno">
           <div> Alunos </div>
         </div>
       </div>
 
-      <div class="box-direira">
-        <header class="cabecalho-box-direira">
-          <div class="usuario">
+      <div className="box-direira">
+        <header className="cabecalho-box-direira">
+          <div className="usuario">
             <div>
-              
               <img src="/assets/imagens/imgmat.png" alt="" />
-              <div class="divDentroIMG">3</div>
+              <div className="divDentroIMG">3</div>
             </div>
 
             <div>
               Olá, <span>Matheus Oliveira</span>
             </div>
           </div>
-          <div class="botoes1">
+          <div className="botoes1">
             <button>
-              
               <img src="/assets/imagens/atualizar.svg" alt="" />
             </button>
             <button>
-              
               <img src="/assets/imagens/log-out.svg" alt="" />
             </button>
           </div>
         </header>
-        <div class="barra-botao1"></div>
+        <div className="barra-botao1"></div>
 
-        <div class="corpo-box-direira">
-          <div class="cadastrar-estudante">
-            <div class="txt-estudante">
-              <div class="barra-estudante"></div>
-              <div class="oie">
-                {idAlterando == 0 ? "Novo Aluno" : "Alterando Aluno"}
+        <div className="corpo-box-direira">
+          <div className="cadastrar-estudante">
+            <div className="txt-estudante">
+              <div className="barra-estudante"></div>
+              <div className="oie">
+                {idAlterando == 0 ? "Novo Aluno" : `Alterando Aluno ${nomeAluno}`}
               </div>
             </div>
 
-            <div class="box-inputs">
-              <div class="sub-box-inputs">
-                <div class="input-item">
+            <div className="box-inputs">
+              <div className="sub-box-inputs">
+                <div className="input-item">
                   Nome:
                   <input
                     type="text"
@@ -182,7 +161,7 @@ export default function Conteudo() {
                     onChange={(r) => setNomeAluno(r.target.value)}
                   />
                 </div>
-                <div class="input-item">
+                <div className="input-item">
                   Chamada:
                   <input
                     type="text"
@@ -192,8 +171,8 @@ export default function Conteudo() {
                 </div>
               </div>
 
-              <div class="sub-box-inputs">
-                <div class="input-item">
+              <div className="sub-box-inputs">
+                <div className="input-item">
                   Curso:
                   <input
                     type="text"
@@ -201,7 +180,7 @@ export default function Conteudo() {
                     onChange={(r) => setCurso(r.target.value)}
                   />
                 </div>
-                <div class="input-item">
+                <div className="input-item">
                   Turma:
                   <input
                     type="text"
@@ -217,13 +196,13 @@ export default function Conteudo() {
             </div>
           </div>
 
-          <div class="lista-matricula">
-            <div class="txt-matricula">
-              <div class="barra-matricula"></div>
-              <div class="txt-matricula">Alunos Matriculados</div>
+          <div className="lista-matricula">
+            <div className="txt-matricula">
+              <div className="barra-matricula"></div>
+              <div className="txt-matricula">Alunos Matriculados</div>
             </div>
 
-            <table class="tabela-matriculados">
+            <table className="tabela-matriculados">
               <thead>
                 <tr>
                   <th> ID </th>
@@ -231,16 +210,15 @@ export default function Conteudo() {
                   <th> Chamada </th>
                   <th> Turma </th>
                   <th> Curso </th>
-                  <th class="espaco"> </th>
-                  <th class="espaco"> </th>
+                  <th className="espaco"> </th>
+                  <th className="espaco"> </th>
                 </tr>
               </thead>
               <tbody>
                 {alunos.map((item, i) => (
-                  <tr className={i % 2 == 0 ? "Linha-alterada" : ""}>
+                  <tr classNameName={i % 2 == 0 ? "Linha-alterada" : ""}>
                     <td> {item.id_matricula} </td>
                     <td title={item.nm_aluno}>
-                      
                       {item.nm_aluno != null && item.nm_aluno.length >= 25
                         ? item.nm_aluno.substr(0, 25) + "..."
                         : item.nm_aluno}
@@ -248,17 +226,13 @@ export default function Conteudo() {
                     <td> {item.nr_chamada} </td>
                     <td> {item.nm_curso} </td>
                     <td> {item.nm_turma} </td>
-                    <td className="espaco">
-                      
+                    <td classNameName="espaco">
                       <button onClick={() => editar(item)}>
-                        
                         <img src="/assets/imagens/edit.svg" alt="" />
                       </button>
                     </td>
-                    <td class="espaco">
-                      
+                    <td className="espaco">
                       <button onClick={() => remover(item.id_matricula)}>
-                        
                         <img src="/assets/imagens/trash-2.svg" alt="" />
                       </button>
                     </td>
