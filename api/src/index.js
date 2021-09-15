@@ -30,8 +30,8 @@ app.post('/matricula', async (req, resp) => {
         if(matri.chamada == "") {
             return resp.send({erro: 'O campo chamada é obrigatório'})
         }
-        if(!matri.chamada <=0 && (isNaN(matri.chamada))) {
-            return resp.send({erro: 'O campo chamada não pode ter números negativos ou letras como valor'})
+        if(matri.chamada <=0) {
+            return resp.send({erro: 'O campo chamada não pode ter números negativos'})
         }
         if( matri.curso == "") {
             return resp.send({erro: 'O campo curso é obrigatório'})
@@ -66,6 +66,10 @@ app.put('/matricula/:id', async (req, resp) => {
     try {
         let id = req.params.id;
         let matricula = req.body;
+        let a =await db.tb_matricula.findOne({where:{nr_chamada:matricula.chamada,nm_turma:matricula.turma}});
+        if(a!= null){
+        return resp.send({erro:'O número de chamada ja está sendo utilizado nessa turma'})
+    }
     
         let r = await db.tb_matricula.update(
             
@@ -78,7 +82,7 @@ app.put('/matricula/:id', async (req, resp) => {
                 where: { id_matricula: id }
             });
 
-        resp.sendStatus(200);
+        resp.send(r);
 
 
     } catch (e) {

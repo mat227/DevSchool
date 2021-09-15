@@ -1,6 +1,7 @@
 import { ContainerConteudo } from "./styled";
 import Api from "../../service/api";
 import { useEffect, useState, useRef } from "react";
+import Menu1 from "../../components/Menu";
 
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -38,6 +39,8 @@ export default function Conteudo() {
       );
       if (r.erro) toast.error(`${r.erro}`);
       else toast.dark("Aluno alterado com sucesso");
+     
+
     }
 
     listar();
@@ -100,25 +103,8 @@ export default function Conteudo() {
     <ContainerConteudo>
       <ToastContainer />
       <LoadingBar color="red" ref={loading} />
-      <div className="lateralEsquerda">
-        <header className="header-lateralEsquerda">
-          <div className="img-livro">
-            <img src="/assets/imagens/book.svg" alt="" />
-          </div>
-          <div className="devSchool">
-            <span>Dev</span> School
-          </div>
-        </header>
-        <div className="blocoPreto"></div>
-        <div className="lateralEsquerda-gerente">
-          <div> Gerenciamento </div>
-          <img src="/assets/imagens/setaparabaixo.svg" alt="" />
-        </div>
-        <div className="lateralEsquerda-aluno">
-          <div> Alunos </div>
-        </div>
-      </div>
-
+      <Menu1></Menu1>
+     
       <div className="box-direira">
         <header className="cabecalho-box-direira">
           <div className="usuario">
@@ -147,7 +133,7 @@ export default function Conteudo() {
             <div className="txt-estudante">
               <div className="barra-estudante"></div>
               <div className="oie">
-                {idAlterando == 0 ? "Novo Aluno" : `Alterando Aluno ${nomeAluno}`}
+                {idAlterando == 0 ? "Novo Aluno" : `Alterando Aluno ${nomeAluno} ID=${idAlterando}`}
               </div>
             </div>
 
@@ -224,8 +210,8 @@ export default function Conteudo() {
                         : item.nm_aluno}
                     </td>
                     <td> {item.nr_chamada} </td>
-                    <td> {item.nm_curso} </td>
                     <td> {item.nm_turma} </td>
+                    <td> {item.nm_curso} </td>
                     
                     <td className="espaco">
                       <button onClick={() => editar(item)}>
