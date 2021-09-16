@@ -19,7 +19,7 @@ app.post('/matricula', async (req, resp) => {
         let matri = req.body;
         let r =await db.tb_matricula.findOne({where:{nr_chamada:matri.chamada,nm_turma:matri.turma}});
         if(r!= null){
-        return resp.send({erro:'O número de chamada ja está sendo utilizado nessa turma'})
+        return resp.send({erro:' O número de chamada ja está sendo utilizado nessa turma'})
         }
         if( matri.nome == "") {
             return resp.send({erro: 'O campo nome é obrigatório'})
@@ -33,6 +33,10 @@ app.post('/matricula', async (req, resp) => {
         if(matri.chamada <=0) {
             return resp.send({erro: 'O campo chamada não pode ter números negativos'})
         }
+        if( isNaN(matri.chamada)) {
+            return resp.send({erro: 'O campo chamada não pode ter letras como valor'})
+        }
+
         if( matri.curso == "") {
             return resp.send({erro: 'O campo curso é obrigatório'})
         }
